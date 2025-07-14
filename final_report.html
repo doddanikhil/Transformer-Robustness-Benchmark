@@ -1,0 +1,58 @@
+
+<html>
+<head>
+    <title>Benchmarking Sentiment Classifiers - Final Report</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin: 40px;}
+        h1 {color: #4CAF50;}
+        h2 {color: #333;}
+        table {width: 60%; border-collapse: collapse; margin-top: 20px;}
+        th, td {padding: 12px; border: 1px solid #ddd; text-align: center;}
+        img {margin-top: 30px; width: 80%;}
+        p {font-size: 16px;}
+    </style>
+</head>
+<body>
+
+<h1>Benchmarking Sentiment Classifiers Against Adversarial and Stress Attacks</h1>
+
+<p><b>Objective:</b> This project evaluates the robustness of a DistilBERT-based sentiment classifier against different adversarial attacks including typographical errors, flood attacks with long junk texts, and simulated DDoS attacks with rapid fire random inputs. The goal is to benchmark model stability, response time, and security under various real-world threat scenarios.</p>
+
+<h2>Accuracy Comparison: Clean vs Adversarial Inputs</h2>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Dataset</th>
+      <th>Clean Accuracy</th>
+      <th>Typo Accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IMDB</td>
+      <td>0.494</td>
+      <td>0.528</td>
+    </tr>
+    <tr>
+      <td>Amazon Mobile Apps</td>
+      <td>0.880</td>
+      <td>0.713</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Accuracy Comparison Graph</h2>
+<img src="accuracy_comparison.png" alt="Accuracy Comparison Graph">
+
+<h2>Flood Attack Observations</h2>
+<p>Flood attacks involved sending long junk reviews (~1000 characters). Model accuracy dropped significantly, and response times increased compared to normal reviews. It showed a clear vulnerability to extremely long adversarial inputs.</p>
+
+<h2>DDoS Attack Observations</h2>
+<p>DDoS attacks involved rapid injection of 100 short junk inputs. Response times increased moderately, simulating server stress during high load conditions. The model handled it reasonably but still slowed down compared to normal input processing.</p>
+
+<h2>Response Time Comparison Graph</h2>
+<img src="response_time_comparison.png" alt="Response Time Comparison Graph">
+
+<p><b>Key Takeaway:</b> DistilBERT shows reasonable robustness to small typo attacks but becomes vulnerable under extreme long-input flooding and under DDoS-like rapid input injections. Future models should incorporate stress-handling mechanisms and adversarial training for better real-world security.</p>
+
+</body>
+</html>
